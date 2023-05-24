@@ -4,7 +4,7 @@ slug: post-frontmatter
 publishDate: 2023-05-24T16:05:04.107Z
 image: ""
 framework: vue
-draft: true
+draft: false
 tags:
   - vue
 author: shera

@@ -3,7 +3,10 @@ import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/Hero.astro";
 
 import { getCollection } from "astro:content";
+
 const allDocs = await getCollection("docs");
+
+console.log(allDocs);
 ---
 
 <Layout title="Welcome to Youi.">
@@ -17,8 +20,11 @@ const allDocs = await getCollection("docs");
             <div class="grid grid-cols-3 gap-5">
                 {
                     allDocs.map((doc, i) => (
-                        <a href="">
-                            <div class=" shadow border border-slate-200 rounded overflow-hidden">
+                        <a
+                            href={`/components/${doc.data.framework}/${doc.slug}`}
+                            class="h-full"
+                        >
+                            <div class="h-full shadow border border-slate-200 rounded overflow-hidden">
                                 <div class="h-[200px] bg-slate-100 flex justify-center items-center text-sm italic">
                                     image placeholder
                                 </div>

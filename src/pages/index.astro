@@ -20,10 +20,7 @@ console.log(allDocs);
             <div class="grid grid-cols-3 gap-5">
                 {
                     allDocs.map((doc, i) => (
-                        <a
-                            href={`/components/${doc.data.framework}/${doc.slug}`}
-                            class="h-full"
-                        >
+                        <a href={`/components/${doc.slug}`} class="h-full">
                             <div class="h-full shadow border border-slate-200 rounded overflow-hidden">
                                 <div class="h-[200px] bg-slate-100 flex justify-center items-center text-sm italic">
                                     image placeholder

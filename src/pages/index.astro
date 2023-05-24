@@ -1,6 +1,23 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/Hero.astro";
+
+import { getCollection } from "astro:content";
+const allDocs = await getCollection("docs");
 ---
 
-<Layout title="Welcome to Youi."><Hero /></Layout>
+<Layout title="Welcome to Youi.">
+    <Hero />
+
+    <section class="bg-slate-50 h-full">
+        <div class="max-w-[80%] mx-auto bg-white grid grid-cols-3 gap-5 p-10">
+            {
+                allDocs.map((doc, i) => (
+                    <div class="p-5 shadow-sm border border-slate-200">
+                        <h3>{doc.data.title}</h3>
+                    </div>
+                ))
+            }
+        </div>
+    </section>
+</Layout>

@@ -19,6 +19,15 @@ import "@/styles.css";
         <title>{title}</title>
     </head>
     <body>
-        <slot />
+        <main class="h-full flex flex-col fixed w-full">
+            <header class="p-5 border-b border-slate-300 shadow-sm">
+                <a href="/" class="fonnt-semibold">Home</a>
+            </header>
+            <div class="grid grid-cols-[20%_1fr] flex-1">
+                <aside class="border-r border-slate-300 p-5 overflow-y-auto">
+                </aside>
+                <slot />
+            </div>
+        </main>
     </body>
 </html>

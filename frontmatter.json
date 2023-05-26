@@ -4,7 +4,7 @@
     {
       "name": "default",
       "pageBundle": false,
-      "previewPath": null,
+      "previewPath": "'components'",
       "fields": [
         {
           "title": "Title",
@@ -46,6 +46,7 @@
         {
           "title": "Author",
           "name": "author",
+          "default": "shera",
           "type": "string"
         }
       ]
@@ -58,6 +59,14 @@
     {
       "title": "docs",
       "path": "[[workspace]]/src/content/docs"
+    }
+  ],
+  "frontMatter.custom.scripts": [
+    {
+      "id": "og-image",
+      "title": "Generate OG Image",
+      "script": "./scripts/og/og.cjs",
+      "command": "~/.nvm/versions/node/v16.19.0/bin/node"
     }
   ]
 }

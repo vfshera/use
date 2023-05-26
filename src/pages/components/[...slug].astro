@@ -13,30 +13,26 @@ const { doc } = Astro.props;
 const { Content } = await doc.render();
 ---
 
-<DocsLayout title={`Youi - ${doc.data.title}`}>
-    <section class="grid grid-cols-[1fr_25%]">
+<DocsLayout title={`USE - ${doc.data.title}`}>
+    <section class="grid grid-cols-[1fr_25%] overflow-y-auto">
         <article
-            class="flex flex-col items-center px-5 py-8 max-w-7xl sm:px-6 lg:px-8 prose"
+            class="flex flex-col items-center px-5 py-8 sm:px-6 lg:px-8 overflow-y-auto"
         >
-            <div
-                class="flex flex-col w-full max-w-3xl prose text-left prose-blue"
-            >
-                <div class="w-full mx-auto overflow-y-auto">
-                    <h1>{doc.data.title}</h1>
+            <div class="w-full mx-auto prose max-w-[90%]">
+                <h1>{doc.data.title}</h1>
 
-                    <Content />
-                </div>
+                <Content />
             </div>
         </article>
 
         <aside
-            class="flex flex-col px-5 py-8 sm:pr-6 lg:pr-8 prose border-l border-slate-50"
+            class="flex flex-col px-5 py-8 sm:pr-6 lg:pr-8 prose border-l border-slate-50 overflow-y-auto"
         >
             <h4>On this page</h4>
 
             <ul class="flex flex-col gap-4 p-0 overflow-y-auto">
                 {
-                    Array.from({ length: 7 }, (v, i) => i + 1).map((v) => (
+                    Array.from({ length: 10 }, (v, i) => i + 1).map((v) => (
                         <li class="list-none m-0">
                             <a
                                 href="/#"

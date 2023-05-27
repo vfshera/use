@@ -7,14 +7,11 @@ import { getCollection } from "astro:content";
 const allDocs = await getCollection("docs");
 ---
 
-<Layout title="Welcome to Youi.">
+<Layout title="Awesome Components">
     <Hero />
 
     <section>
-        <div class="max-w-5xl mx-auto flex flex-col gap-5">
-            <div class="pt-10 rounded-t-2xl bg-white">
-                <h1 class="font-bold text-3xl">Components</h1>
-            </div>
+        <div class="max-w-5xl pt-10 mx-auto flex flex-col gap-5">
             <div class="grid grid-cols-3 gap-5">
                 {
                     allDocs.map((doc, i) => (

@@ -1,5 +1,6 @@
 ---
 import DocsLayout from "@/layouts/DocsLayout.astro";
+import { sentenceCase } from "@/utils/transform";
 import { getCollection } from "astro:content";
 export async function getStaticPaths() {
     const docs = await getCollection("docs");
@@ -18,10 +19,21 @@ const { Content } = await doc.render();
         <article
             class="flex flex-col items-center px-5 py-8 sm:px-6 lg:px-8 overflow-y-auto"
         >
+            {
+                doc.data.image && (
+                    <div class="min-h-[350px] mb-10  bg-light w-full rounded-t relative  ">
+                        <img
+                            class="h-full not-prose  mx-auto bg-light "
+                            src={doc.data.image}
+                            alt={sentenceCase(doc.data.title)}
+                        />
+                    </div>
+                )
+            }
             <div
                 class="w-full mx-auto prose prose-headings:text-dark max-w-[90%]"
             >
-                <h1>{doc.data.title}</h1>
+                <h1 class="capitalize">{doc.data.title}</h1>
 
                 <Content />
             </div>

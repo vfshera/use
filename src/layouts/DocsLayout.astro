@@ -5,6 +5,10 @@ export interface Props {
 
 const { title } = Astro.props;
 
+import { getCollection } from "astro:content";
+
+const allDocs = await getCollection("docs");
+
 import "@/styles.css";
 ---
 
@@ -25,6 +29,20 @@ import "@/styles.css";
             </header>
             <div class="grid grid-cols-[20%_1fr] overflow-y-auto">
                 <aside class="border-r border-slate-300 p-5 overflow-y-auto">
+                    <ul class="flex flex-col gap-1">
+                        {
+                            allDocs.map((doc) => (
+                                <li class="list-none  pb-1">
+                                    <a
+                                        href={`/components/${doc.slug}`}
+                                        class="text-slate-700 text-base hover:text-slate-800 hover:underline transition-all duration-300"
+                                    >
+                                        {doc.data.title}
+                                    </a>
+                                </li>
+                            ))
+                        }
+                    </ul>
                 </aside>
                 <slot />
             </div>

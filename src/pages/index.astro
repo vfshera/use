@@ -1,5 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import { sentenceCase } from "@/utils/transform";
 import Hero from "@/components/Hero.astro";
 
 import { getCollection } from "astro:content";
@@ -18,11 +19,19 @@ const allDocs = await getCollection("docs");
                         <a href={`/components/${doc.slug}`} class="h-full">
                             <div class="h-full shadow border border-slate-200 rounded overflow-hidden">
                                 <div class="h-[200px] bg-slate-100 flex justify-center items-center text-sm italic">
-                                    image placeholder
+                                    {doc.data.image ? (
+                                        <img
+                                            class="h-[200px] bg-slate-100 "
+                                            src={doc.data.image}
+                                            alt={sentenceCase(doc.data.title)}
+                                        />
+                                    ) : (
+                                        "image placeholder"
+                                    )}
                                 </div>
                                 <div class="py-3 px-5">
                                     <h3 class="text-indigo-800 text-xl">
-                                        {doc.data.title}
+                                        {sentenceCase(doc.data.title)}
                                     </h3>
                                     <div class="flex gap-1">
                                         {doc.data.tags.map((tag) => (

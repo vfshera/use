@@ -1,12 +1,12 @@
 ---
-export interface Props {
+import { sentenceCase } from "@/utils/transform";
+import { getCollection } from "astro:content";
+interface Props {
     title: string;
 }
 
 const { title } = Astro.props;
 const { pathname } = Astro.url;
-
-import { getCollection } from "astro:content";
 
 const allDocs = await getCollection("docs");
 
@@ -37,7 +37,7 @@ import "@/styles.css";
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
-                            class="w-6 h-6 translate-x-1.5 group-hover/back:-translate-x-1 transition-all duration-300"
+                            class="w-6 h-6 translate-x-0.5 group-hover/back:-translate-x-1 transition-all duration-300"
                         >
                             <path
                                 d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75"
@@ -48,7 +48,7 @@ import "@/styles.css";
                     <input
                         type="text"
                         placeholder="Search docs..."
-                        class="w-full py-1.5 px-2 text-sm outline-none shadow-md transition-all duration-300 focus:outline-none border border-dark/10 focus:border-dark focus:shadow bg-transparent focus:bg-white rounded"
+                        class="w-full py-1.5 px-2 text-sm outline-none shadow-md transition-all duration-300 focus:outline-none border border-dark/10 focus:border-dark/50 focus:shadow bg-white/5 focus:bg-white rounded"
                     />
                     <ul class="flex flex-col gap-1">
                         {
@@ -57,7 +57,7 @@ import "@/styles.css";
                                     <a
                                         href={`/components/${doc.slug}`}
                                         class:list={[
-                                            " text-base hover:text-slate-800 flex  gap-2 hover:underline transition-all duration-300",
+                                            " text-base hover:text-slate-800 flex  gap-2 hover:underline  transition-all duration-300",
                                             {
                                                 "text-dark":
                                                     pathname ===
@@ -84,7 +84,7 @@ import "@/styles.css";
                                         >
                                             <path d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
                                         </svg>
-                                        {doc.data.title}
+                                        {sentenceCase(doc.data.title)}
                                     </a>
                                 </li>
                             ))

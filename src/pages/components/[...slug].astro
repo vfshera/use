@@ -13,8 +13,6 @@ export async function getStaticPaths() {
 const { doc } = Astro.props;
 
 const { Content, headings } = await doc.render();
-
-console.log(JSON.stringify(headings, null, 2));
 ---
 
 <DocsLayout title={`Awesome Components - ${doc.data.title}`}>

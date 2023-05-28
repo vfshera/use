@@ -13,6 +13,23 @@ author: shera
 
 To all who come to this happy place: welcome.
 
+```ts
+import DocsLayout from "@/layouts/DocsLayout.astro";
+import { sentenceCase } from "@/utils/transform";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const docs = await getCollection("docs");
+  return docs.map((doc) => ({
+    params: { slug: doc.slug },
+    props: { doc },
+  }));
+}
+const { doc } = Astro.props;
+
+const { Content, headings } = await doc.render();
+```
+
 This is the repo for [docs.astro.build](https://docs.astro.build/).
 This repo contains all the source code we use to build our docs site.
 

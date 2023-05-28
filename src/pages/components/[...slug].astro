@@ -2,6 +2,7 @@
 import DocsLayout from "@/layouts/DocsLayout.astro";
 import { sentenceCase } from "@/utils/transform";
 import { getCollection } from "astro:content";
+
 export async function getStaticPaths() {
     const docs = await getCollection("docs");
     return docs.map((doc) => ({
@@ -11,7 +12,9 @@ export async function getStaticPaths() {
 }
 const { doc } = Astro.props;
 
-const { Content } = await doc.render();
+const { Content, headings } = await doc.render();
+
+console.log(JSON.stringify(headings, null, 2));
 ---
 
 <DocsLayout title={`Awesome Components - ${doc.data.title}`}>
@@ -46,16 +49,17 @@ const { Content } = await doc.render();
 
             <ul class="flex flex-col gap-4 p-0 overflow-y-auto">
                 {
-                    Array.from({ length: 10 }, (v, i) => i + 1).map((v) => (
-                        <li class="list-none m-0">
-                            <a
-                                href="/#"
-                                class="block m-0 before:content-['#'] before:text-[70%] no-underline hover:underline hover:text-blue-700"
-                            >
-                                Topic {v}
-                            </a>
-                        </li>
-                    ))
+                    headings.length > 0 &&
+                        headings.map((heading) => (
+                            <li class="list-none m-0">
+                                <a
+                                    href={`#${heading.slug}`}
+                                    class="block m-0 before:content-['#'] before:text-[70%] no-underline hover:underline hover:text-blue-700"
+                                >
+                                    {heading.text}
+                                </a>
+                            </li>
+                        ))
                 }
             </ul>
         </aside>
